@@ -3,6 +3,7 @@ package com.turmaa.helpdesk.service;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.turmaa.helpdesk.domain.Chamado;
 import com.turmaa.helpdesk.domain.Cliente;
@@ -14,6 +15,7 @@ import com.turmaa.helpdesk.repositories.ChamadoRepository;
 import com.turmaa.helpdesk.repositories.ClienteRepository;
 import com.turmaa.helpdesk.repositories.TecnicoRepository;
 
+@Service
 public class DBService {
 	@Autowired
 	private TecnicoRepository tecnicoRepository;

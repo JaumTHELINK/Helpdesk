@@ -20,7 +20,7 @@ public class ChamadoService {
 	@Autowired
 	private ChamadoRepository repository;
 	@Autowired
-	private TecnicoService tecnicoService;
+	private TecnicoService tecnicoService; 
 
 	@Autowired
 	private ClienteService clienteService;

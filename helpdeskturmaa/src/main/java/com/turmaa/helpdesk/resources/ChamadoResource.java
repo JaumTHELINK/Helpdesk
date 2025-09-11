@@ -46,7 +46,7 @@ public class ChamadoResource {
 		Chamado newObj = service.create(objDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newObj.getId()).toUri();
-		return ResponseEntity.created(uri).build();  //body(new ChamadoDTO(newObj));
+		return ResponseEntity.created(uri).body(new ChamadoDTO(newObj));
 	}
 
 	@PutMapping(value = "/{id}")
