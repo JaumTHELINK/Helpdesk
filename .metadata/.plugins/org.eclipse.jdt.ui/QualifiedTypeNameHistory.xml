@@ -13,4 +13,5 @@
     <fullyQualifiedTypeName name="com.turmaa.helpdesk.domain.enuns.Status"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="com.turmaa.helpdesk.service.exceptions.DataIntegrityViolationException"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
 </qualifiedTypeNameHistroy>

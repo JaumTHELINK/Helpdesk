@@ -6197,3 +6197,20 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact antlr:antlr:j
 2025-09-11 19:47:48,042 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
 2025-09-11 19:47:48,054 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2025-09-11 19:47:48,054 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
+2025-09-11 19:49:17,077 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-09-11 20:33:56,332 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-11 20:33:56,350 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2025-09-11 20:33:56,387 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2025-09-11 20:33:56,404 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-11 20:33:56,404 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
+2025-09-11 20:41:36,665 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-11 20:41:36,675 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2025-09-11 20:41:36,681 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2025-09-11 20:41:36,691 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-11 20:41:36,691 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
+2025-09-16 16:20:17,215 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-09-16 16:20:39,549 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-16 16:20:39,557 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2025-09-16 16:20:39,578 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2025-09-16 16:20:39,595 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-16 16:20:39,596 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
