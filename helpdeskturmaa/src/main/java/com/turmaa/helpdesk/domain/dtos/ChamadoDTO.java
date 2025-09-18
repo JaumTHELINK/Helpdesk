@@ -1,9 +1,11 @@
 package com.turmaa.helpdesk.domain.dtos;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.turmaa.helpdesk.domain.Chamado;
 import com.turmaa.helpdesk.domain.enums.Prioridade;
 import com.turmaa.helpdesk.domain.enums.Status;
@@ -12,6 +14,12 @@ public class ChamadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataAbertura = LocalDate.now();
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataFechamento;
 
 	@NotNull(message = "O campo TITULO é obrigatório")
 	private String titulo;
@@ -40,6 +48,9 @@ public class ChamadoDTO implements Serializable {
 		this.status = obj.getStatus();
 		this.tecnico = obj.getTecnico().getId();
 		this.cliente = obj.getCliente().getId();
+		this.dataAbertura = obj.getDataAbertura();
+		this.dataFechamento = obj.getDataFechamento();
+
 	}
 
 	// Getters e Setters

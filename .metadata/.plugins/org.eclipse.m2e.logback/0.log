@@ -6214,3 +6214,14 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact antlr:antlr:j
 2025-09-16 16:20:39,578 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
 2025-09-16 16:20:39,595 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2025-09-16 16:20:39,596 [Worker-3: Launching helpdeskturmaa - HelpdeskturmaaApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
+2025-09-16 16:51:52,590 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-16 16:51:52,603 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2025-09-16 16:51:52,608 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2025-09-16 16:51:52,615 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-16 16:51:52,615 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
+2025-09-16 16:55:38,215 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-16 16:55:38,216 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2025-09-16 16:55:38,223 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2025-09-16 16:55:38,229 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-09-16 16:55:38,229 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Jaum\Documents\workspace-spring-tools-for-eclipse-4.31.0.RELEASE\Helpdesk\helpdeskturmaa\src\test\resources
+2025-09-18 18:41:02,271 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
