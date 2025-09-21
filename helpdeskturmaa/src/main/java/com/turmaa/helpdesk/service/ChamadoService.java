@@ -26,7 +26,7 @@ public class ChamadoService {
 	private ClienteService clienteService;
 	
 	public void delete(Integer id) {
-	    Chamado obj = findById(id); 
+	    findById(id); 
 	    repository.deleteById(id);
 	}
 

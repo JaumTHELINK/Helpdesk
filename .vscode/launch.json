@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HelpdeskturmaaApplication<helpdesk>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.turmaa.helpdesk.HelpdeskturmaaApplication",
+            "projectName": "helpdesk",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
