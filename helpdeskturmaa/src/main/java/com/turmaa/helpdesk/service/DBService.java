@@ -3,6 +3,7 @@ package com.turmaa.helpdesk.service;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.turmaa.helpdesk.domain.Chamado;
@@ -23,11 +24,14 @@ public class DBService {
 	private ClienteRepository clienteRepository;
 	@Autowired
 	private ChamadoRepository chamadoRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	public void instanciaDB (){
-		Tecnico tec1= new Tecnico(null, "Bill Gates", "85734725334", "bill@gmail.com", "123");
+		Tecnico tec1= new Tecnico(null, "Bill Gates", "85734725334", "bill@gmail.com", encoder.encode("123"));
 		tec1.addPerfil(Perfil.ADMIN);
 		
-		Cliente cli1 = new Cliente (null,"Linus Torvalds", "12345678910", "linus@gmail.com", "123");
+		Cliente cli1 = new Cliente (null,"Linus Torvalds", "12345678910", "linus@gmail.com", encoder.encode("123"));
+		cli1.addPerfil(Perfil.CLIENTE);
 		
 		Chamado cha1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "primeiro chamado", tec1, cli1);
 		

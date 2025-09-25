@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import com.turmaa.helpdesk.service.DBService;
 
 @Configuration
-@Profile("Test")
+@Profile("test")
 public class TestConfig {
 	
 	@Autowired
