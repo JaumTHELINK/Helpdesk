@@ -1,4 +1,4 @@
-package com.turma.helpdesk.config;
+package com.turmaa.helpdesk.config;
 
 import java.util.Arrays;
 
@@ -16,8 +16,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.turma.helpdesk.security.JWTAuthenticationFilter;
-import com.turma.helpdesk.security.JWTUtil;
+import com.turmaa.helpdesk.security.JWTAuthenticationFilter;
+import com.turmaa.helpdesk.security.JWTUtil;
 
 /**
  * Classe de configuração de segurança da aplicação.

@@ -1,4 +1,4 @@
-package com.turma.helpdesk.security;
+package com.turmaa.helpdesk.security;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.turma.helpdesk.security;
+package com.turmaa.helpdesk.security;
 
 import java.util.Collection;
 import java.util.Set;

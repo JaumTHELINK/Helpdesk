@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.turmaa.helpdesk.domain.Pessoa;
 import com.turmaa.helpdesk.repositories.PessoaRepository;
-import com.turma.helpdesk.security.UserSS;
+import com.turmaa.helpdesk.security.UserSS;
 
 /**
  * Implementação de {@link UserDetailsService} para autenticação de usuários.
