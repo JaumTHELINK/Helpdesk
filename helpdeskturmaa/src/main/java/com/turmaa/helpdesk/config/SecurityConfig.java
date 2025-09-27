@@ -20,14 +20,61 @@ import com.turmaa.helpdesk.security.JWTAuthenticationFilter;
 import com.turmaa.helpdesk.security.JWTUtil;
 
 /**
- * Classe de configuração de segurança da aplicação.
- * 
+ * <h1>Configuração de Segurança do Sistema Helpdesk</h1>
  * <p>
- * Esta classe estende {@link WebSecurityConfigurerAdapter} para configurar
- * autenticação, autorização, CORS e filtros JWT.
+ * Classe central de configuração de segurança que implementa autenticação JWT,
+ * autorização baseada em roles, configuração CORS e políticas de sessão stateless.
+ * Esta configuração garante que apenas usuários autenticados e autorizados
+ * possam acessar os recursos protegidos do sistema.
  * </p>
  * 
- * @author Wagner
+ * <h2>Principais Funcionalidades:</h2>
+ * <ul>
+ *   <li><strong>Autenticação JWT:</strong> Sistema de tokens para autenticação stateless</li>
+ *   <li><strong>Autorização:</strong> Controle de acesso baseado em perfis de usuário</li>
+ *   <li><strong>CORS:</strong> Configuração para permitir requisições cross-origin</li>
+ *   <li><strong>Criptografia:</strong> BCrypt para hash seguro de senhas</li>
+ *   <li><strong>Ambientes:</strong> Configurações específicas para dev/test/prod</li>
+ * </ul>
+ * 
+ * <h2>Arquitetura de Segurança:</h2>
+ * <ul>
+ *   <li><strong>Stateless:</strong> Sem sessões HTTP, cada requisição carrega o token</li>
+ *   <li><strong>Filter Chain:</strong> Filtros customizados para processar JWT</li>
+ *   <li><strong>UserDetails:</strong> Integração com entidades Pessoa/Técnico/Cliente</li>
+ *   <li><strong>Password Encoder:</strong> BCrypt com salt automático</li>
+ * </ul>
+ * 
+ * <h2>Fluxo de Autenticação:</h2>
+ * <ol>
+ *   <li>Cliente envia credenciais (email/senha) para /login</li>
+ *   <li>JWTAuthenticationFilter valida credenciais</li>
+ *   <li>Se válidas, gera token JWT com dados do usuário</li>
+ *   <li>Token é retornado no header Authorization</li>
+ *   <li>Requisições subsequentes devem incluir token</li>
+ * </ol>
+ * 
+ * <h2>Perfis e Autorização:</h2>
+ * <ul>
+ *   <li><strong>ADMIN:</strong> Acesso total ao sistema</li>
+ *   <li><strong>TECNICO:</strong> Gerenciar chamados e visualizar clientes</li>
+ *   <li><strong>CLIENTE:</strong> Criar e visualizar próprios chamados</li>
+ * </ul>
+ * 
+ * <h2>Configurações por Ambiente:</h2>
+ * <ul>
+ *   <li><strong>Test:</strong> H2 Console habilitado, headers frame desabilitados</li>
+ *   <li><strong>Dev:</strong> CORS permissivo, logs detalhados</li>
+ *   <li><strong>Prod:</strong> Máxima segurança, HTTPS obrigatório</li>
+ * </ul>
+ * 
+ * @author Sistema Helpdesk
+ * @version 1.0
+ * @since 2024
+ * 
+ * @see JWTAuthenticationFilter
+ * @see JWTUtil
+ * @see com.turmaa.helpdesk.security.UserDetailsImpl
  */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
