@@ -3,6 +3,8 @@ package com.turmaa.helpdesk.domain.dtos;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.turmaa.helpdesk.domain.Cliente;
 
@@ -138,6 +140,16 @@ public class ClienteDTO implements Serializable {
 	private String email;
 
 	/**
+	 * Senha do cliente (campo aceito no DTO apenas no momento da criação/atualização).
+	 *
+	 * Observação: por segurança a senha não é exposta em respostas (DTO -> entity only)
+	 */
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@NotNull(message = "O campo SENHA é obrigatório")
+	@Size(min = 3, message = "A senha deve ter ao menos 3 caracteres")
+	private String senha;
+
+	/**
 	 * <h3>Construtor Padrão</h3>
 	 * <p>
 	 * Construtor vazio necessário para frameworks como Spring Boot, Jackson
@@ -183,6 +195,7 @@ public class ClienteDTO implements Serializable {
 		this.nome = obj.getNome();
 		this.cpf = obj.getCpf();
 		this.email = obj.getEmail();
+		// NOTA: não expor a senha em DTOs de leitura
 	}
 
 	// ===========================================
@@ -267,5 +280,20 @@ public class ClienteDTO implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * Retorna a senha (apenas para uso no processo de criação/atualização).
+	 * Não deve ser enviada em respostas públicas.
+	 */
+	public String getSenha() {
+		return senha;
+	}
+
+	/**
+	 * Define a senha (usada no bind do request para criação/atualização).
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }

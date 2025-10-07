@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.turmaa.helpdesk.service.exceptions.DataIntegrityViolationException;
 import com.turmaa.helpdesk.service.exceptions.ObjectNotFoundException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.turmaa.helpdesk.service.exceptions.FieldMessage;
 
 /**
  * <h2>Manipulador Global de Exceções</h2>
@@ -190,6 +194,48 @@ public class ResourceExceptionHandle {
 		// Retorna um ResponseEntity com o status 404 Not Found e o corpo de erro.
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
+    
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException ex,
+	    HttpServletRequest request) {
+
+	StandardError error = new StandardError(
+		System.currentTimeMillis(),
+		HttpStatus.BAD_REQUEST.value(),
+		"Data Integrity Violation",
+		ex.getMessage(),
+		request.getRequestURI());
+
+	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<StandardError> methodArgumentNotValidException(MethodArgumentNotValidException ex,
+	    HttpServletRequest request) {
+
+	StandardError error = new StandardError(
+		System.currentTimeMillis(),
+		HttpStatus.BAD_REQUEST.value(),
+		"Validation Error",
+		"Erro de validação nos campos",
+		request.getRequestURI());
+
+	// Collect field errors into FieldMessage list
+
+	List<FieldMessage> fieldErrors = ex.getBindingResult().getFieldErrors().stream()
+		.map(err -> new FieldMessage(err.getField(), err.getDefaultMessage()))
+		.collect(Collectors.toList());
+
+	// Attach field errors to message by concatenation (simple approach)
+	String detailed = fieldErrors.stream()
+		.map(f -> f.getFieldName() + ": " + f.getMessage())
+		.collect(Collectors.joining("; "));
+
+	// set more detailed message
+	error.setMessage(detailed.isEmpty() ? error.getMessage() : detailed);
+
+	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 	
 	/**
 	 * <h3>⚠️ Tratamento de Exceções de Violação de Integridade de Dados</h3>

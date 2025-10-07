@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.turmaa.helpdesk.domain.Cliente;
@@ -56,6 +57,9 @@ public class ClienteService {
 	 */
 	@Autowired
 	private ClienteRepository repository;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	/**
 	 * Busca um cliente específico por seu ID.
@@ -111,7 +115,12 @@ public class ClienteService {
 		if (repository.findByCpf(objDto.getCpf()).isPresent()) {
 			throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
 		}
-		return repository.save(new Cliente(objDto));
+		// Codifica a senha antes de persistir (validação Bean Validation exige senha)
+		Cliente cliente = new Cliente(objDto);
+		if (objDto.getSenha() != null) {
+			cliente.setSenha(passwordEncoder.encode(objDto.getSenha()));
+		}
+		return repository.save(cliente);
 	}
 
 	/**

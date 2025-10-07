@@ -14,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turmaa.helpdesk.domain.dtos.CredenciaisDTO;
@@ -152,6 +154,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * @see JWTUtil
      */
     private final JWTUtil jwtUtil;
+
+    private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     /**
      * <h3>Construtor com Injeção de Dependências</h3>
@@ -358,6 +362,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // Gera o token JWT para este usuário
         String token = jwtUtil.generateToken(username);
 
+        // DEBUG: registrar geração de token (apenas início do token para evitar exposição completa em logs)
+        try {
+            String prefix = token != null && token.length() > 8 ? token.substring(0, 8) : token;
+            logger.debug("JWT gerado para usuário {}: {}...", username, prefix);
+        } catch (Exception e) {
+            logger.debug("JWT gerado para usuário {} (não foi possível mostrar prefixo do token)", username);
+        }
+
         // Expõe o cabeçalho Authorization para que o front-end consiga ler
         response.setHeader("access-control-expose-headers", "Authorization");
 
@@ -443,6 +455,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                               AuthenticationException failed) throws IOException, ServletException {
+        // DEBUG: log da falha de autenticação (não expõe credenciais)
+        logger.debug("Falha de autenticação: {}", failed.getMessage());
 
         // Define código HTTP 401 (Não autorizado)
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

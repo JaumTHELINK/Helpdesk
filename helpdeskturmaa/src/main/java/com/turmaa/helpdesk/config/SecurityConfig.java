@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.turmaa.helpdesk.security.JWTAuthenticationFilter;
+import com.turmaa.helpdesk.security.JWTAuthorizationFilter;
 import com.turmaa.helpdesk.security.JWTUtil;
 
 /**
@@ -137,17 +138,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          */
         http.cors().and().csrf().disable();
 
-        /**
-         * Adiciona o filtro responsável pela autenticação via JWT.
-         * Esse filtro fará login e retornará o token para o cliente quando as credenciais estiverem corretas.
-         */
-        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+    /**
+     * Adiciona o filtro responsável pela autenticação via JWT.
+     * Esse filtro fará login e retornará o token para o cliente quando as credenciais estiverem corretas.
+     */
+    http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+    // Adiciona o filtro de autorização que valida o token em requisições subsequentes
+    http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 
         /**
          * Define que as rotas em PUBLIC_MATCHES são permitidas sem autenticação,
          * e todas as demais requisições exigem autenticação.
          */
-        http.authorizeRequests().antMatchers(PUBLIC_MATCHES).permitAll().anyRequest().authenticated();
+        // Permitir explicitamente o endpoint de login e as rotas públicas
+        http.authorizeRequests()
+            .antMatchers(PUBLIC_MATCHES).permitAll()
+            .antMatchers("/login").permitAll()
+            .anyRequest().authenticated();
 
         /**
          * Configura a aplicação para não manter sessão HTTP (STATELESS),
