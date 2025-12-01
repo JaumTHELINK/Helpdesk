@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.turmaa.helpdesk.domain.Tecnico;
 
 /**
@@ -136,6 +137,17 @@ public class TecnicoDTO implements Serializable {
 	 */
 	@NotNull(message = "O campo EMAIL é obrigatório")
 	private String email;
+
+	/**
+	 * Senha do técnico (apenas escrita - não será exposta nas respostas JSON).
+	 * <p>
+	 * Recebida em requisições de criação/atualização, mas marcada como
+	 * write-only para não ser serializada nas respostas.
+	 * </p>
+	 */
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@NotNull(message = "O campo SENHA é obrigatório", groups = OnCreate.class)
+	private String senha;
 
 	/**
 	 * <h3>Construtor Padrão</h3>
@@ -278,5 +290,23 @@ public class TecnicoDTO implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * Obtém a senha (geralmente não utilizada em respostas pois é WRITE_ONLY).
+	 *
+	 * @return senha do técnico (pode ser null)
+	 */
+	public String getSenha() {
+		return senha;
+	}
+
+	/**
+	 * Define a senha do técnico (vinda de requisição).
+	 *
+	 * @param senha nova senha
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }

@@ -95,10 +95,12 @@ public class Tecnico extends Pessoa{
 	 * @see TecnicoDTO
 	 */
 	public Tecnico(TecnicoDTO dto) {
-	    this.id = dto.getId();
-	    this.nome = dto.getNome();
-	    this.cpf = dto.getCpf();
-	    this.email = dto.getEmail();
+		this.id = dto.getId();
+		this.nome = dto.getNome();
+		this.cpf = dto.getCpf();
+		this.email = dto.getEmail();
+		this.senha = dto.getSenha();
+		addPerfil(Perfil.TECNICO);
 	}
 	
 	/**
