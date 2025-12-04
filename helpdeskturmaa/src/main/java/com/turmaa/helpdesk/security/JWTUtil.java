@@ -1,6 +1,11 @@
 package com.turmaa.helpdesk.security;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import com.turmaa.helpdesk.security.UserSS;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -174,6 +179,31 @@ public class JWTUtil {
                    .signWith(SignatureAlgorithm.HS512, secret.getBytes())
                    // Compacta e retorna o token em formato String
                    .compact();
+    }
+
+    /**
+     * Gera token JWT incluindo as roles/perfis do usuário no payload.
+     *
+     * @param user instância de {@link UserSS} contendo authorities
+     * @return token JWT com claims adicionais "roles" e "perfil"
+     */
+    public String generateToken(UserSS user) {
+        Claims claims = Jwts.claims().setSubject(user.getUsername());
+
+        List<String> roles = user.getAuthorities().stream()
+                .map((GrantedAuthority g) -> g.getAuthority())
+                .map(s -> s != null && s.startsWith("ROLE_") ? s.substring(5) : s)
+                .collect(Collectors.toList());
+
+        // inserir claims compatíveis com front-end
+        claims.put("roles", roles); // ex: ["ADMIN"]
+        claims.put("perfil", roles); // compat com front-ends antigos que usam 'perfil'
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(SignatureAlgorithm.HS512, secret.getBytes())
+                .compact();
     }
 
     /**

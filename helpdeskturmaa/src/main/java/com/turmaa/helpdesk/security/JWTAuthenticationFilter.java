@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turmaa.helpdesk.domain.dtos.CredenciaisDTO;
+import com.turmaa.helpdesk.security.UserSS;
 
 /**
  * <h2>Filtro de Autenticação JWT</h2>
@@ -356,18 +357,18 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
 
-        // Obtém o nome de usuário autenticado
-        String username = ((UserSS) authResult.getPrincipal()).getUsername();
+        // Obtém o UserSS autenticado para incluir roles no token
+        UserSS user = (UserSS) authResult.getPrincipal();
 
-        // Gera o token JWT para este usuário
-        String token = jwtUtil.generateToken(username);
+        // Gera o token JWT incluindo roles/perfis no payload
+        String token = jwtUtil.generateToken(user);
 
         // DEBUG: registrar geração de token (apenas início do token para evitar exposição completa em logs)
         try {
             String prefix = token != null && token.length() > 8 ? token.substring(0, 8) : token;
-            logger.debug("JWT gerado para usuário {}: {}...", username, prefix);
+            logger.debug("JWT gerado para usuário {}: {}...", user.getUsername(), prefix);
         } catch (Exception e) {
-            logger.debug("JWT gerado para usuário {} (não foi possível mostrar prefixo do token)", username);
+            logger.debug("JWT gerado para usuário {} (não foi possível mostrar prefixo do token)", user.getUsername());
         }
 
         // Expõe o cabeçalho Authorization para que o front-end consiga ler

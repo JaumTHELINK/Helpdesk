@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.turmaa.helpdesk.domain.Tecnico;
@@ -56,6 +57,9 @@ public class TecnicoService {
 	 */
 	@Autowired
 	private TecnicoRepository repository;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	/**
 	 * Busca um técnico específico por seu ID.
@@ -111,7 +115,11 @@ public class TecnicoService {
 		if (repository.findByCpf(objDto.getCpf()).isPresent()) {
 			throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
 		}
-		return repository.save(new Tecnico(objDto));
+		Tecnico tecnico = new Tecnico(objDto);
+		if (objDto.getSenha() != null) {
+			tecnico.setSenha(passwordEncoder.encode(objDto.getSenha()));
+		}
+		return repository.save(tecnico);
 	}
 
 	/**

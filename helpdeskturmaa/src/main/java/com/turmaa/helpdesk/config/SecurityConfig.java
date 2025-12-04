@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -153,6 +154,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Permitir explicitamente o endpoint de login e as rotas públicas
         http.authorizeRequests()
             .antMatchers(PUBLIC_MATCHES).permitAll()
+            .antMatchers(HttpMethod.POST, "/clientes").permitAll() // permite auto-cadastro de clientes
             .antMatchers("/login").permitAll()
             .anyRequest().authenticated();
 
